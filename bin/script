@@ -1,0 +1,27 @@
+require 'rubyserial'
+
+SERIAL_FILE = '/dev/ttyUSB1'
+INITDELAY = 2
+DELAY = 0.5
+DEFAULT_SEQUENCE = '000 001 002 003'
+
+def initialize_port
+  serial = Serial.new '/dev/ttyUSB1', 9600
+  sleep INITDELAY
+  serial
+end
+
+def initialize_sequence
+  ARGV.any? ? ARGV.join(' ') : DEFAULT_SEQUENCE
+end
+
+def generate_run_body(sequence)
+  sequence.split.reduce ('') do |result, location|
+    result + "serial.write(\"#{location}\n\");sleep DELAY;"
+  end
+end
+
+serial = initialize_port
+sequence = initialize_sequence
+eval generate_run_body(sequence)
+serial.write("\n")
