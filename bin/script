@@ -1,9 +1,18 @@
 require 'rubyserial'
 
-SERIAL_FILE = '/dev/ttyUSB1'
+#blue 0
+#green 1
+#red 2
+#teal 3
+#yellow 4
+#purple 5
+#white 6
+#off -7
+
+SERIAL_FILE = '/dev/ttyUSB0'
 INIT_DELAY = 2
 DELAY = 0.5
-DEFAULT_SEQUENCE = '000 001 002 003'
+DEFAULT_SEQUENCE = '0000 0011 0022 0033'
 
 def initialize_port
   serial = Serial.new SERIAL_FILE, 9600
