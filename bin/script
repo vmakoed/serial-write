@@ -1,13 +1,13 @@
 require 'rubyserial'
 
 SERIAL_FILE = '/dev/ttyUSB1'
-INITDELAY = 2
+INIT_DELAY = 2
 DELAY = 0.5
 DEFAULT_SEQUENCE = '000 001 002 003'
 
 def initialize_port
-  serial = Serial.new '/dev/ttyUSB1', 9600
-  sleep INITDELAY
+  serial = Serial.new SERIAL_FILE, 9600
+  sleep INIT_DELAY
   serial
 end
 
